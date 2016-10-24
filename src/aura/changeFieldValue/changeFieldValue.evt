@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" >
+	<aura:attribute name="item" type="SObject"/>
+	<aura:attribute name="propertyChanged" type="String"/>
+</aura:event>

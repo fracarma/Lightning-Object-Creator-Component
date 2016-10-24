@@ -1,0 +1,4 @@
+<aura:event type="APPLICATION" >
+	<aura:attribute name="itemList" type="SObject[]" />
+	<aura:attribute name="isExternalRequest" type="Boolean" />
+</aura:event>

@@ -1,0 +1,39 @@
+<aura:component >
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+	
+	<aura:handler event="c:validationError" action="{!c.handleValidationErrorEvent}" />
+	<aura:registerEvent name="changeFieldValue" type="c:changeFieldValue"/>
+
+	<aura:attribute name="item" type="SObject" required="true"/>
+	<aura:attribute name="property" type="String" required="true"/>
+	<aura:attribute name="value" type="String" required="true"/>
+	<aura:attribute name="label" type="String" required="true"/>
+	<aura:attribute name="type" type="String" />
+	<aura:attribute name="picklistValues" type="Object[]" />
+	<aura:attribute name="placeholder" type="String"/>
+	<aura:attribute name="isInput" type="Boolean" />
+	<aura:attribute name="disabled" type="Boolean" />
+	
+	<aura:attribute name="globalId" type="String" access="private"/>
+
+	<aura:attribute name="required" type="Boolean" />
+
+
+	<div class="slds-form-element">
+		<label class="slds-form-element__label" for="{!v.label}">{!v.label}<aura:if isTrue="{!v.required}">*</aura:if></label>
+
+		<!-- FraCarma: the ui:inputCheckbox needs some tricks in order to use the SDLS  -->
+		<aura:if isTrue="{!v.type == 'BOOLEAN'}">
+			<div class="slds-form-element__control"  >
+				<span class="slds-checkbox" aura:id="placeholderItem">
+					<label class="slds-checkbox__label" for="{!v.globalId}">
+						<span class="slds-checkbox--faux"></span>
+					</label>
+				</span>
+			</div>
+			<aura:set attribute="else">
+				<div class="slds-form-element__control" aura:id="placeholderItem" />
+		    </aura:set>
+		</aura:if>
+	</div>
+</aura:component>

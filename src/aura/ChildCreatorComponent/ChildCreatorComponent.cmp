@@ -1,0 +1,73 @@
+<aura:component controller="ChildCreatorController">
+
+	<aura:attribute name="obj" type="Sobject" default="{
+															'sobjectType': 'Sobject',
+										                   'Id' : '',
+															}" />
+	<aura:attribute name="fieldList" type="Object[]" />
+	<aura:attribute name="saveButton" type="Boolean" />
+	
+	<aura:attribute name="itemList" type="SObject[]" />
+	<aura:attribute name="fieldMap" type="Object" />
+	<aura:attribute name="objName" type="String" />
+	<aura:attribute name="message" type="Boolean" />
+	<aura:attribute name="max" type="Integer" />
+	<aura:attribute name="columns" type="Integer" default='1'  />
+
+	<!-- EVENTS -->
+	<aura:registerEvent name="validationErrorEvent" type="c:validationError"/>
+	<aura:registerEvent name="savedItemListEvent" type="c:savedItemList"/>
+	<aura:registerEvent name="returnItemListEvent" type="c:returnItemList"/>
+
+	<aura:handler name="changeFieldValue" event="c:changeFieldValue" action="{!c.handleChangeFieldValue}"/>
+	<aura:handler name="removeItemEvent" event="c:removeItem" action="{!c.handleRemoveItem}"/>
+	<aura:handler name="savedItemListEvent" event="c:savedItemList" action="{!c.handleSavedItemList}"/>
+	
+	<aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+	<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+
+
+
+	<!-- METHODS -->
+
+	<aura:method name="save" action="{!c.externalSaveItemList}" 
+      description="Save the method"> 
+        <aura:attribute name="fieldList" type="Object" /> 
+    </aura:method>
+	
+	<aura:method name="fireReturnItemListEvent" action="{!c.fireReturnItemListEvent}" description="Fire the return item list event"/> 
+	<aura:method name="validateFields" action="{!c.validateFields}" description="Validate fields based on the component requirements"/> 
+	<!-- INIT -->
+	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+    
+    <!-- BODY -->
+    <div class="slds-grid slds-wrap ">
+    	
+		<aura:if isTrue="{!v.message}">
+			<div class="slds-p-horizontal--small slds-size--1-of-1">
+				<ui:message aura:id="messages" />
+			</div>
+		</aura:if>
+
+		<aura:iteration items="{!v.itemList}" var="item">
+			<div class="{!'slds-box slds-box--small  slds-p-vertical--large slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-'+v.columns+' slds-theme--shade'}">
+				<c:ChildCreatorItem item="{!item}" fieldList="{!v.fieldList}" fieldMap="{!v.fieldMap}" objName="{!v.objName}"/>
+			</div>
+		</aura:iteration>
+	</div>
+    
+    <ui:button label="{! 'Add ' + v.objName}"
+              class="slds-button"
+              press="{!c.addItem}"
+              disabled="{!v.itemList.length >= v.max}"
+              />
+
+    <aura:if isTrue="{!v.saveButton}">
+		<ui:button label="Save"
+	              class="slds-button"
+	              press="{!c.saveItemList}"
+	              aura:id="saveButton"
+	              />
+    </aura:if>
+    <ui:spinner aura:id="spinner"/>
+</aura:component>
