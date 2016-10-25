@@ -1,0 +1,6 @@
+<design:component label="Contacts Creator">
+	<design:attribute name="max" label="max" />
+    <design:attribute name="columns" label="columns" />
+    <design:attribute name="message" label="message" />
+    <design:attribute name="saveButton" label="saveButton" />
+</design:component>

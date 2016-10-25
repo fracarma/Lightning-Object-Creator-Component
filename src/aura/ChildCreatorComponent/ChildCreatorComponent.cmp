@@ -1,18 +1,21 @@
-<aura:component controller="ChildCreatorController">
+<aura:component controller="ChildCreatorController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
 
 	<aura:attribute name="obj" type="Sobject" default="{
 															'sobjectType': 'Sobject',
 										                   'Id' : '',
-															}" />
-	<aura:attribute name="fieldList" type="Object[]" />
-	<aura:attribute name="saveButton" type="Boolean" />
+															}"  access="global"/>
+	<aura:attribute name="fieldList" type="Object[]"  access="global"/>
 	
-	<aura:attribute name="itemList" type="SObject[]" />
-	<aura:attribute name="fieldMap" type="Object" />
-	<aura:attribute name="objName" type="String" />
-	<aura:attribute name="message" type="Boolean" />
-	<aura:attribute name="max" type="Integer" />
-	<aura:attribute name="columns" type="Integer" default='1'  />
+	<aura:attribute name="saveButton" type="Boolean"  access="global"/>
+	<aura:attribute name="message" type="Boolean" access="global"/>
+	<aura:attribute name="max" type="Integer"  access="global"/>
+	<aura:attribute name="columns" type="Integer" default='1'  access="global" />
+	
+	<!-- PRIVATE ATTRIBUTES -->
+
+	<aura:attribute name="fieldMap" type="Object" access="private" />
+	<aura:attribute name="objName" type="String" access="private"/>
+	<aura:attribute name="itemList" type="SObject[]" access="private" />
 
 	<!-- EVENTS -->
 	<aura:registerEvent name="validationErrorEvent" type="c:validationError"/>

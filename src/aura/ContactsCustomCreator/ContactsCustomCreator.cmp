@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+
+	<aura:attribute name="max" type="Integer" />
+	<aura:attribute name="columns" type="Integer" default='1'  />
+	<aura:attribute name="saveButton" type="Boolean" />
+	<aura:attribute name="message" type="Boolean" />
+
+
+	 <c:ChildCreatorComponent obj="{
+                            			sobjectType : 'Contact',
+                            			AccountId : 'v.recordId',
+		                            	LastName : 'Rossi',
+		                            	FirstName : 'Mario'
+                    				}"
+							
+                              fieldList="[
+                    			{name : 'FirstName' ,       type : 'inputField', required : true},
+	                            {name : 'LastName' ,       type : 'inputField', required : true},
+	                            {name : 'Phone' ,        type : 'inputField', required : true},
+	                            {name : 'Email' ,        type : 'inputField'}
+	                        ]"
+            				
+
+							max="{!v.max}"
+							columns="{!v.columns}"
+							saveButton="{!v.saveButton}"
+							message="{!v.message}"
+
+
+
+			                        />
+	</aura:component>
