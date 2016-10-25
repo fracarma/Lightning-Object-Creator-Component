@@ -90,6 +90,7 @@
 	},
 
 	getObjInfos : function(component, next){
+		this.showSpinner(component);
 		var obj = component.get("v.obj");
 		console.log('obj: '+obj);
 		var action = component.get("c.getObjectFieldMap");
@@ -98,6 +99,7 @@
 		});
 
 		action.setCallback(this, function(res){
+        	this.hideSpinner(component);
 			var state  = this.setStandardCallback(res);
 			if(state == 'SUCCESS'){
 				component.set("v.fieldMap", res.getReturnValue());
@@ -139,6 +141,7 @@
 	},
 
 	saveItemList : function(component, event, helper, isExternalRequest){
+		this.showSpinner(component);
 		var itemList = component.get('v.itemList');
 		var itemToBeSavedList = itemList.filter(function(item){
 			return !item.toBeRemoved;
@@ -174,6 +177,7 @@
 		}
 
         action.setCallback(this, function(res){
+        	this.hideSpinner(component);
         	var state = res.getState();
     		var msg = component.find("errors");
 
@@ -251,7 +255,27 @@
 			return res;
 		});
 		return !itemInErrorList.length;
-	}
+	},
+
+	showSpinner : function (component) {
+        var spinner = component.find('spinner');
+        if(!spinner){
+        	return;
+        }
+        var evt = spinner.get("e.toggle");
+        evt.setParams({ isVisible : true });
+        evt.fire();    
+    },
+
+    hideSpinner : function (component) {
+        var spinner = component.find('spinner');
+        if(!spinner){
+        	return;
+        }
+        var evt = spinner.get("e.toggle");
+        evt.setParams({ isVisible : false });
+        evt.fire();    
+    }
 
 	
 

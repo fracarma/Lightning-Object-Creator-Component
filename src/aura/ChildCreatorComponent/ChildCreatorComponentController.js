@@ -98,17 +98,11 @@
 	},
 
 	showSpinner : function (component, event, helper) {
-        var spinner = component.find('spinner');
-        var evt = spinner.get("e.toggle");
-        evt.setParams({ isVisible : true });
-        evt.fire();    
+		helper.showSpinner(component); 
     },
 
     hideSpinner : function (component, event, helper) {
-        var spinner = component.find('spinner');
-        var evt = spinner.get("e.toggle");
-        evt.setParams({ isVisible : false });
-        evt.fire();    
+		helper.hideSpinner(component); 
     },
 
     fireReturnItemListEvent : function (component, event, helper){

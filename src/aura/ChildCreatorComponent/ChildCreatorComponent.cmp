@@ -26,8 +26,9 @@
 	<aura:handler name="removeItemEvent" event="c:removeItem" action="{!c.handleRemoveItem}"/>
 	<aura:handler name="savedItemListEvent" event="c:savedItemList" action="{!c.handleSavedItemList}"/>
 	
+	<!-- Fracarma: The spinner I prefer to show it only on "real" server calls...
 	<aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
-	<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+	<aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/> -->
 
 
 
