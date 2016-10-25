@@ -38,8 +38,19 @@
 		var newItem = {};
 		newItem.obj = JSON.parse(JSON.stringify(obj));
 
+		if(!newItem.obj){
+			this.writeMessage(component, 'error', 'Component Error' ,'Check the object format passed to the component.\nContact your System Admin');
+			return;
+		}
+
 		var fieldList = component.get('v.fieldList');
 		var fieldMap = component.get("v.fieldMap");
+
+		if(!fieldMap){
+			this.writeMessage(component, 'error', 'No FieldMap found' ,'');
+			return;
+		}
+
 		newItem.fieldProperties = {};
 		/*Fracarma: If there is a field in the fieldlist which is not present in the object,
 		I add it*/
@@ -80,6 +91,7 @@
 
 	getObjInfos : function(component, next){
 		var obj = component.get("v.obj");
+		console.log('obj: '+obj);
 		var action = component.get("c.getObjectFieldMap");
 		action.setParams({
 			"item" : obj
@@ -91,6 +103,13 @@
 				component.set("v.fieldMap", res.getReturnValue());
 				next(component);
 			}
+			if(state != "SUCCESS"){
+        		severity = 'error';
+        		body = res.getError();
+        		title = 'An error has occurred';
+        		var message = 'the server returned:\n'+JSON.stringify(body,null, '  ');
+        		this.writeMessage(component, severity, title ,message);
+        	}
 		});
 
 		$A.enqueueAction(action);
