@@ -9,22 +9,23 @@
 	<aura:attribute name="objName" type="String" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
-	<div class="slds-media">
-    	<div class="slds-media__figure">
-    		<span class="slds-avatar slds-avatar--large">
-				<img src="{!$Resource.slds212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
-    		</span>
-    	</div>
-    	<div class="slds-media__body">
-    		<p class="slds-text-heading--label">{!v.objName}</p>
-    		<h1 class="slds-text-heading--medium">New {!v.objName + ' ' + (v.item.index + 1)}</h1>
-    	</div>
-    	<ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
-              class="slds-button"
-              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
+	<div class=" slds-box slds-box--small slds-theme--shade">
+		<div class="slds-media">
+	    	<div class="slds-media__figure">
+	    		<span class="slds-avatar slds-avatar--large">
+					<img src="{!$Resource.slds212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
+	    		</span>
+	    	</div>
+	    	<div class="slds-media__body">
+	    		<p class="slds-text-heading--label">{!v.objName}</p>
+	    		<h1 class="slds-text-heading--medium">New {!v.objName + ' ' + (v.item.index + 1)}</h1>
+	    	</div>
+	    	<ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
+	              class="slds-button"
+	              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
+		</div>
+
+		
+		<form class="slds-form--horizontal" aura:id="placeholder"></form>
 	</div>
-
-	
-	<form class="slds-form--horizontal" aura:id="placeholder"></form>
-
 </aura:component>

@@ -53,9 +53,10 @@
 		</aura:if>
 
 		<aura:iteration items="{!v.itemList}" var="item">
-			<div class="{!'slds-box slds-box--small  slds-p-vertical--large slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-'+v.columns+' slds-theme--shade'}">
+			<div class="{!'slds-p-around--x-small slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-'+v.columns}">
 				<c:ChildCreatorItem item="{!item}" fieldList="{!v.fieldList}" fieldMap="{!v.fieldMap}" objName="{!v.objName}"/>
 			</div>
+
 		</aura:iteration>
 	</div>
     
