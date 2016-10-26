@@ -26,6 +26,7 @@
 								columns="{!v.columns}"
 								saveButton="{!v.saveButton}"
 								message="{!v.message}"
+								createRecordOnLoad="{!true}"
 
 
 

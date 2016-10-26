@@ -1,7 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
-		helper.getObjInfos(component, helper.addItem);
-		
+		helper.doInit(component, event, helper);
 	},
 
 	addItem : function(component, event, helper){

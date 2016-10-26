@@ -1,4 +1,17 @@
 ({
+	doInit : function(component, event,helper){
+		helper.getObjInfos(component, helper);
+	},
+
+	manageAfterGetObjectInfosInit: function(component, helper){
+		var createRecordOnLoad = component.get("v.createRecordOnLoad");
+
+		if(createRecordOnLoad){
+			helper.addItem(component);
+		}
+
+	},
+
 	initializeWrapper : function(component, newItem){
 		var fieldList = component.get('v.fieldList');
 		var fieldMap = component.get("v.fieldMap");
@@ -106,7 +119,7 @@
 		return state;
 	},
 
-	getObjInfos : function(component, next){
+	getObjInfos : function(component, helper){
 		this.showSpinner(component);
 		var obj = component.get("v.obj");
 		console.log('obj: '+obj);
@@ -120,7 +133,7 @@
 			var state  = this.setStandardCallback(res);
 			if(state == 'SUCCESS'){
 				component.set("v.fieldMap", res.getReturnValue());
-				next(component);
+				helper.manageAfterGetObjectInfosInit(component,helper);
 			}
 			if(state != "SUCCESS"){
         		severity = 'error';
