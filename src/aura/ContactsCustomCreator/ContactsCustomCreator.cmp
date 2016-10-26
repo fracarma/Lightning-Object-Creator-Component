@@ -6,24 +6,26 @@
 	<aura:attribute name="message" type="Boolean" />
 
 
-	 <c:ChildCreatorComponent obj="{
+	 <c:ChildCreatorComponent 	obj="{
                             			sobjectType : 'Contact',
 		                            	LastName : 'Rossi',
 		                            	FirstName : 'Mario'
                     				}"
+    
+                    			additionalFields="{!'AccountId:'+v.recordId}"
 							
-                              fieldList="[
-                    			{name : 'FirstName' ,       type : 'inputField', required : true},
-	                            {name : 'LastName' ,       type : 'inputField', required : true},
-	                            {name : 'Phone' ,        type : 'inputField', required : true},
-	                            {name : 'Email' ,        type : 'inputField'}
-	                        ]"
+                              	fieldList="[
+                    				{name : 'FirstName' ,       type : 'inputField', required : true},
+	                            	{name : 'LastName' ,       type : 'inputField', required : true},
+	                            	{name : 'Phone' ,        type : 'inputField', required : true},
+	                            	{name : 'Email' ,        type : 'inputField'}
+	                        	]"
             				
 
-							max="{!v.max}"
-							columns="{!v.columns}"
-							saveButton="{!v.saveButton}"
-							message="{!v.message}"
+								max="{!v.max}"
+								columns="{!v.columns}"
+								saveButton="{!v.saveButton}"
+								message="{!v.message}"
 
 
 

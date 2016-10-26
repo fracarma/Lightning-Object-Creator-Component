@@ -37,6 +37,23 @@
 		var obj = component.get('v.obj');
 		var newItem = {};
 		newItem.obj = JSON.parse(JSON.stringify(obj));
+		
+		//FraCarma: sometimes the helper method "addFields" seems not working when called from here.. DAMN!! 
+		var additionalFields = component.get('v.additionalFields');
+		if(additionalFields){
+			//FraCarma: I define a way to pass the additionalFields as string, the format is: "fieldName1:value1;fieldName2:value2..."
+			additionalFields = additionalFields.split(';');
+			for (var i = 0; i < additionalFields.length; i++) {
+				var field = additionalFields[i].split(':');
+				if(!field){
+					continue;
+				}
+				newItem.obj[field[0]] = field[1]; 
+			}
+		}
+	
+
+		
 
 		if(!newItem.obj){
 			this.writeMessage(component, 'error', 'Component Error' ,'Check the object format passed to the component.\nContact your System Admin');
@@ -275,6 +292,24 @@
         var evt = spinner.get("e.toggle");
         evt.setParams({ isVisible : false });
         evt.fire();    
+    },
+
+    addFields : function(component, newItem){
+    	var additionalFields = component.get('v.additionalFields');
+		if(!additionalFields){
+			return newItem;
+		}
+		//FraCarma: I define a way to pass the additionalFields as string, the format is: "fieldName1:value1;fieldName2:value2..."
+		additionalFields = additionalFields.split(';');
+		for (var i = 0; i < additionalFields.length; i++) {
+			var field = additionalFields[i].split(':');
+			if(!field){
+				continue;
+			}
+			newItem.obj[field[0]] = field[1]; 
+		}
+
+		return newItem;
     }
 
 	

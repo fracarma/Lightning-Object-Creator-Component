@@ -5,6 +5,8 @@
 										                   'Id' : '',
 															}"  access="global"/>
 	<aura:attribute name="fieldList" type="Object[]"  access="global"/>
+	<!-- additionalFields format: "fieldName1:value1;fieldName2:value2..." -->
+	<aura:attribute name="additionalFields" type="String"  access="global"/>
 	
 	<aura:attribute name="saveButton" type="Boolean"  access="global"/>
 	<aura:attribute name="message" type="Boolean" access="global"/>
