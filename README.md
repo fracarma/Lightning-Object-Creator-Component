@@ -32,7 +32,16 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 |          *columns*      	       	    |		Integer     |Number of record boxes to be displayed in the component in desktop version. On mobile, the value is set to 1. Default value is 1|
 |          *createRecordOnLoad*      	|		Boolean     |Create a record on component loading. Default is *true*|
 
-Definition example:
+#### fieldList
+
+|             			Name            |         Type      |                                Description                                  |
+|---------------------------------------|-------------------|-----------------------------------------------------------------------------|
+|          *name* (*Required*)           |		String     |API name of the field|
+|          *type* (*Required*)		     |		String 	    |'inputField' or 'outputField'|
+|          *required*		           |		Boolean      |If *true*, the field is required and a *save* operation is not allowed|
+
+
+#### Example:
 
 ```
 <c:ChildCreatorComponent 	obj="{
@@ -160,3 +169,7 @@ We can also register some events on component intialization, or save the compone
 
 To see the component in the list of the available custom components in the Lightning App Builder, we need to create a *middlestage* component. An [example](src/aura/ContactsCustomCreator) is present in the repository.
 Be sure to accomplish all the requisites described in this resource: https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/components_config_for_app_builder.htm
+
+## TODO
+
+1. Add the possibility to load existing records on loading
