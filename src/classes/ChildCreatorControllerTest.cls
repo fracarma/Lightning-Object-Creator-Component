@@ -34,6 +34,41 @@ private class ChildCreatorControllerTest {
 		System.assert(objectFieldMap.containsKey('Name'));
 	}
 
+	@isTest
+	private static void getExistingRecordsTest_errors() {
+		try {
+			ChildCreatorController.getExistingRecords(null, null, null);
+		} catch (Exception e) {
+			system.debug('@@Exception on '+e.getStackTraceString()+' : '+e.getMessage());
+		}
+
+		String fieldListJSON = '[{"ASdfgasdf":"asdfasdfasgfgasd",sdfgasdf"asdfgasdf":}]';
+		Contact item = new Contact(LastName = 'Rossi');
+		String[] parameterList = null;
+
+		try {
+			ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+		} catch (Exception e2) {
+			system.debug('@@Exception on '+e2.getStackTraceString()+' : '+e2.getMessage());
+		}
+	}
+
+	@isTest
+	private static void getExistingRecordsTest_noParameterList() {
+		String fieldListJSON = '[{"name":"FirstName","type":"inputField","required":true},{"name":"LastName","type":"inputField","required":true},{"name":"Phone","type":"inputField","required":true},{"name":"Email","type":"inputField"}]';
+		Contact item = new Contact(LastName = 'Rossi');
+		String[] parameterList = null;
+		ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+	}
+
+	@isTest
+	private static void getExistingRecordsTest_withParameterList() {
+		String fieldListJSON = '[{"name":"FirstName","type":"inputField","required":true},{"name":"LastName","type":"inputField","required":true},{"name":"Phone","type":"inputField","required":true},{"name":"NOT EXISTING","type":"inputField"}]';
+		Contact item = new Contact(LastName = 'Rossi');
+		String[] parameterList = new List<String>{'LastName:Rossi','firstname:Mario','asdfasdf:Mario','asdf:23452:23452'};
+		ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+	}
+
 	public static List<Product2> createListofProduct(Integer n){
 
 		Product2[] accountList = new List<Product2>();

@@ -13,6 +13,7 @@
 	<aura:attribute name="max" type="Integer"  access="global"/>
 	<aura:attribute name="columns" type="Integer" default='1'  access="global" />
 	<aura:attribute name="createRecordOnLoad" type="Boolean" default='true'  access="global" />
+	<aura:attribute name="loadExistingRecords" type="String" default='false'  access="global" />
 	
 	<!-- PRIVATE ATTRIBUTES -->
 

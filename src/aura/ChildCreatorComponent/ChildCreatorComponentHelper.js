@@ -5,9 +5,44 @@
 
 	manageAfterGetObjectInfosInit: function(component, helper){
 		var createRecordOnLoad = component.get("v.createRecordOnLoad");
+		var loadExistingRecords = component.get("v.loadExistingRecords");
+
 
 		if(createRecordOnLoad){
 			helper.addItem(component);
+		}
+
+		if(loadExistingRecords){
+			var action = component.get("c.getExistingRecords");
+			var parameterList = loadExistingRecords.split(';');
+			var fieldList = component.get("v.fieldList");
+			var obj = component.get("v.obj");
+
+			action.setParams({
+				"item" : obj,
+				"fieldListJSON" : JSON.stringify(fieldList), //I cannot pass the object due to SF bug, that's a workaound
+				"parameterList" : parameterList
+			});
+			action.setCallback(this, function(res){
+				var state  = this.setStandardCallback(res);
+				if(state == 'SUCCESS'){
+		            var body = res.getReturnValue();
+	        		var itemList = component.get("v.itemList");
+	        		var existingItemList = helper.handleReturnedObj(component,body,true);
+	        		for (var i = 0; i < existingItemList.length; i++) {
+	        			itemList.push(existingItemList[i]);
+	        		}
+	        		component.set('v.itemList',itemList);
+				}
+				if(state != "SUCCESS"){
+	        		var severity = 'error';
+	        		var body = res.getError();
+	        		var title = 'An error has occurred';
+	        		var message = 'the server returned:\n'+JSON.stringify(body,null, '  ');
+	        		this.writeMessage(component, severity, title ,message);
+	        	}
+			});
+			$A.enqueueAction(action);
 		}
 
 	},
@@ -162,12 +197,14 @@
 		$A.enqueueAction(action2);
 	},
 
-	handleReturnedObj : function(component,body){
-		var itemList = [];
+	handleReturnedObj : function(component,body, isAdding){
+		var itemList = component.get("v.itemList")
+		var newItemList = [];
 		for (var i = body.length - 1; i >= 0; i--) {
-			itemList[i] = this.createItemFromObj(component,body[i], i);
+			var index = (isAdding) ? i + itemList.length : i;
+			newItemList[i] = this.createItemFromObj(component,body[i], index);
 		}
-		return itemList;
+		return newItemList;
 	},
 
 	saveItemList : function(component, event, helper, isExternalRequest){
@@ -224,7 +261,7 @@
                 body = res.getReturnValue();
         		title = "Item list saved!";
         		//Recreate the list with the values returned by the server (I need the ID)
-        		component.set('v.itemList',helper.handleReturnedObj(component,body));
+        		component.set('v.itemList',helper.handleReturnedObj(component,body,false));
         		var savedItemListEvent = $A.get("e.c:savedItemList");
         		savedItemListEvent.setParams({"isExternalRequest" : isExternalRequest});
         		savedItemListEvent.fire();

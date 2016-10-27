@@ -51,4 +51,65 @@ public with sharing class ChildCreatorController {
 	public static SObject[] formatSObjectList(SObject[] itemList){
 		return itemList;
 	}
+
+	@AuraEnabled
+	public static SObject[] getExistingRecords(SObject item, String fieldListJSON, String[] parameterList){
+		if(item == null || fieldListJSON == null){
+			throw new AuraHandledException('Malformed parameters');
+		}
+		List<fieldWrapper> fieldList = (List<fieldWrapper>) JSON.deserialize(fieldListJSON, List<fieldWrapper>.class);
+		if(fieldList == null){
+			throw new AuraHandledException('Impossible to retrieve the field list. Contact your system administrator');
+		}
+		DescribeSObjectResult describeObj = item.getSObjectType().getDescribe();
+		Map<String,Schema.SObjectField> fieldsMap = describeObj.fields.getMap();
+		String objectName = describeObj.getName();
+		String queryFields = 'Id,';
+		for(fieldWrapper wrapper: fieldList){
+			String fieldName = wrapper.name;
+			if(!fieldsMap.containsKey(fieldName)){
+				continue;
+			}
+			queryFields += fieldName+',';
+		}
+
+		queryFields = queryFields.removeEnd(',');
+
+		String queryConditions = '';
+		if(parameterList == null){
+			parameterList = new List<String>();
+		}
+		for(String parameter: parameterList){
+			String[] condition = parameter.split(':');
+			if(condition.size() != 2){
+				system.debug('@@Check the parameter List format, it should be like "fieldName:fieldValue": '+parameterList);	
+				continue;
+			}
+			String conditionFieldName = condition[0];
+			String conditionValue = condition[1];
+			if(!fieldsMap.containsKey(conditionFieldName)){
+				system.debug('@@The field '+conditionFieldName+'doesn\'t seems to be a valid field name for '+objectName);
+				continue;
+			}
+
+			queryConditions += conditionFieldName+'='+'\''+conditionValue+'\''+' AND '; 
+
+		}
+
+		queryConditions = queryConditions.removeEnd(' AND ');
+		String queryString = 'SELECT '+queryFields+' FROM '+objectName;
+		if(!String.isBlank(queryConditions)){
+			queryString += ' WHERE '+queryConditions;
+		}
+
+		List<SObject> existingRecordList = Database.query(queryString);
+		return existingRecordList;
+	}
+
+	public class fieldWrapper {
+		public String name;
+		public String type;
+		public Boolean required;
+	}
+
 }

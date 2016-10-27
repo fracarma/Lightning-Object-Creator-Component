@@ -20,7 +20,8 @@
 	                            	{name : 'Phone' ,        type : 'inputField', required : true},
 	                            	{name : 'Email' ,        type : 'inputField'}
 	                        	]"
-            				
+            					
+            					loadExistingRecords="{!'AccountId:'+v.recordId}"
 
 								max="{!v.max}"
 								columns="{!v.columns}"
