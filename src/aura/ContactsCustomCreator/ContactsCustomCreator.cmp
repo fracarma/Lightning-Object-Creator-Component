@@ -21,7 +21,7 @@
 	                            	{name : 'Email' ,        type : 'inputField'}
 	                        	]"
             					
-            					loadExistingRecords="{!'AccountId:'+v.recordId}"
+            					loadExistingRecords="true"
 
 								max="{!v.max}"
 								columns="{!v.columns}"

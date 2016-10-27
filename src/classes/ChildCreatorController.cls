@@ -76,7 +76,7 @@ public with sharing class ChildCreatorController {
 		queryFields = queryFields.removeEnd(',');
 
 		String queryConditions = '';
-		if(parameterList == null){
+		if(parameterList == null || parameterList[0] == 'true'){
 			parameterList = new List<String>();
 		}
 		for(String parameter: parameterList){

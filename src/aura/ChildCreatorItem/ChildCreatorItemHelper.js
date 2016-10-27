@@ -34,7 +34,6 @@
         var label = (fieldMap) ? fieldMap[property].label : 'Label not found';
         var type = (fieldMap) ? fieldMap[property].type  : 'Type not found';
         var picklistValues = (fieldMap && type == 'PICKLIST') ? fieldMap[property].picklistValues  : 'picklistValues not found';
-        console.log(item.obj[property]);
         var value = (item.obj[property]) ? item.obj[property] : '';
         
         var componentConfig = 

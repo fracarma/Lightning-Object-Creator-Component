@@ -172,4 +172,5 @@ Be sure to accomplish all the requisites described in this resource: https://dev
 
 ## TODO
 
-1. Add the possibility to load existing records on loading
+1. Add the possibility to load existing records on loading (DONE)
+1. Update this README

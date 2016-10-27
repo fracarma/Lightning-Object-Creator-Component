@@ -79,7 +79,6 @@
 	},
 
 	handleValidationErrorEvent : function(component,event,helper){
-			console.log('entrato in handleValidationErrorEvent!');
 		helper.checkInput(component,helper,true);
 	}
 })

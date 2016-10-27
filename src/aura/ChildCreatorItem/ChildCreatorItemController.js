@@ -1,7 +1,6 @@
 ({
 	doInit : function(component, event, helper) {
 		var item = component.get('v.item');
-        console.log('item: '+item);
 		var fieldList = component.get("v.fieldList");
         var fieldMap = component.get("v.fieldMap");
         var componentList = [];

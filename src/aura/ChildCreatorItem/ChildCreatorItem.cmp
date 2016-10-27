@@ -18,7 +18,7 @@
 	    	</div>
 	    	<div class="slds-media__body">
 	    		<p class="slds-text-heading--label">{!v.objName}</p>
-	    		<h1 class="slds-text-heading--medium">New {!v.objName + ' ' + (v.item.index + 1)}</h1>
+	    		<h1 class="slds-text-heading--medium">{!v.objName + ' ' + (v.item.index + 1) + (v.item.obj.Id == null ? ' - New' : '')}</h1>
 	    	</div>
 	    	<ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
 	              class="slds-button"

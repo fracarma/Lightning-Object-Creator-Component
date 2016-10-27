@@ -41,7 +41,6 @@
 		var item = itemList[newItem.index];
 		item.obj[propertyChanged] = newItem.obj[propertyChanged];
 		item.fieldProperties[propertyChanged].hasError = newItem.fieldProperties[propertyChanged].hasError;
-		console.log(item.fieldProperties[propertyChanged].hasError);
 	},
 
 	handleRemoveItem : function(component, event, helper){
@@ -65,10 +64,6 @@
 
 		component.set('v.itemList', itemList);
 
-	},
-
-	handleSavedItemList : function(component, event, helper){
-		console.log('Salvati catch nel componente');
 	},
 
 	externalSaveItemList : function(component, event, helper){
@@ -106,7 +101,6 @@
 
     fireReturnItemListEvent : function (component, event, helper){
     	var itemList = component.get("v.itemList");
-    	console.log(JSON.stringify(itemList));
 		var action = component.get("c.formatSObjectList");
         
         var objList = [];

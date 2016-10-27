@@ -12,6 +12,7 @@
 			helper.addItem(component);
 		}
 
+
 		if(loadExistingRecords){
 			var action = component.get("c.getExistingRecords");
 			var parameterList = loadExistingRecords.split(';');

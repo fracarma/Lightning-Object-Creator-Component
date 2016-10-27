@@ -8,12 +8,12 @@
 	<!-- additionalFields format: "fieldName1:value1;fieldName2:value2..." -->
 	<aura:attribute name="additionalFields" type="String"  access="global"/>
 	
-	<aura:attribute name="saveButton" type="Boolean"  access="global"/>
-	<aura:attribute name="message" type="Boolean" access="global"/>
+	<aura:attribute name="saveButton" type="Boolean" default='{!true}' access="global"/>
+	<aura:attribute name="message" type="Boolean" default='{!false}'   access="global"/>
 	<aura:attribute name="max" type="Integer"  access="global"/>
 	<aura:attribute name="columns" type="Integer" default='1'  access="global" />
-	<aura:attribute name="createRecordOnLoad" type="Boolean" default='true'  access="global" />
-	<aura:attribute name="loadExistingRecords" type="String" default='false'  access="global" />
+	<aura:attribute name="createRecordOnLoad" type="Boolean" default='{!true}'  access="global" />
+	<aura:attribute name="loadExistingRecords" type="String" default='{!false}'  access="global" />
 	
 	<!-- PRIVATE ATTRIBUTES -->
 
