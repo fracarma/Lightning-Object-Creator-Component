@@ -8,9 +8,9 @@ Salesforce doesn't provide an easy way to create multiple records directly from 
 
 So, the *ChildCreatorComponent* (the name is out to date!) was written basically to fill this needing. It is written with the Lightning Framework, so as possible to use this component in Visualforce pages but also to create specific components for Lightning App Builder.
 
-A picture of the component working is here:
+An example of the component working is here:
 
-![Child Creator Component Working!](https://cloud.githubusercontent.com/assets/12348998/19725619/ee604368-9b86-11e6-8ade-9efc41f097f7.PNG)
+![Child Creator Component Working!](https://cloud.githubusercontent.com/assets/12348998/19802396/b7b32fd2-9d03-11e6-95c8-146ae1f3a7f3.gif)
 
 ## Prerequisites
 
