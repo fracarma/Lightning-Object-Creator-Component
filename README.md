@@ -172,6 +172,8 @@ We can also register some events on component intialization, or save the compone
 
 ## Use the component in Lightning App Builder
 
+![Lightning App Builder - Contacts Creator](https://cloud.githubusercontent.com/assets/12348998/19801453/9fcf262c-9cff-11e6-81a1-729d41a81b4d.gif)
+
 To see the component in the list of the available custom components in the Lightning App Builder, we need to create a *middlestage* component. An [example](src/aura/ContactsCustomCreator) is present in the repository: A Component which can be used on Account Record pages to retrieve Contact related to an Account and insert new ones.
 Be sure to accomplish all the requisites described in this resource: https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/components_config_for_app_builder.htm
 
