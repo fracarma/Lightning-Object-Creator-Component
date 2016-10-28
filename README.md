@@ -44,6 +44,7 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 |          *type* (*Required*)		     |		String 	    |'inputField' or 'outputField'|
 |          *required*		           |		Boolean      |If *true*, the field is required and a *save* operation is not allowed|
 
+**NB: At the moment, The only fields full supported are Text, Numbers, Email, Picklist and Checkbox**. Any other field type could be not working or completely brake the component.
 
 #### Example:
 
@@ -171,10 +172,12 @@ We can also register some events on component intialization, or save the compone
 
 ## Use the component in Lightning App Builder
 
-To see the component in the list of the available custom components in the Lightning App Builder, we need to create a *middlestage* component. An [example](src/aura/ContactsCustomCreator) is present in the repository.
+To see the component in the list of the available custom components in the Lightning App Builder, we need to create a *middlestage* component. An [example](src/aura/ContactsCustomCreator) is present in the repository: A Component which can be used on Account Record pages to retrieve Contact related to an Account and insert new ones.
 Be sure to accomplish all the requisites described in this resource: https://developer.salesforce.com/docs/atlas.en-us.lightning.meta/lightning/components_config_for_app_builder.htm
 
 ## TODO
 
-1. Add the possibility to load existing records on loading (DONE)
 1. Update this README
+1. Add the possibility to load existing records on loading (DONE)
+1. Support Lookup fields
+1. Support Formula fields

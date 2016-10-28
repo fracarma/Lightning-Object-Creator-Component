@@ -1,4 +1,4 @@
-<aura:component controller="ChildCreatorController" implements="flexipage:availableForAllPageTypes,force:hasRecordId" access="global">
+<aura:component controller="ChildCreatorController" access="global">
 
 	<aura:attribute name="obj" type="Sobject" default="{
 															'sobjectType': 'Sobject',
