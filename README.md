@@ -1,5 +1,9 @@
 # Lightning Object Creator Component
 
+<a href="https://githubsfdeploy.herokuapp.com">
+  <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
+</a>
+
 Salesforce doesn't provide an easy way to create multiple records directly from a Visualforce page. We needed an easy way to create child records from the parent page, selecting some fields the user needs to fill in.
 
 So, the *ChildCreatorComponent* (the name is out to date!) was written basically to fill this needing. It is written with the Lightning Framework, so as possible to use this component in Visualforce pages but also to create specific components for Lightning App Builder.
