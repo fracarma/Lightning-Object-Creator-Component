@@ -13,11 +13,3 @@
 !/src/aura/
 !/src/staticresources/
 
-*.page-meta.xml
-*.cls-meta.xml
-*.trigger-meta.xml
-*.component-meta.xml
-*.app-meta.xml
-*.cmp-meta.xml
-*.resource-meta.xml
-

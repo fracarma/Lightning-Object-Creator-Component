@@ -13,7 +13,7 @@
 		<div class="slds-media">
 	    	<div class="slds-media__figure">
 	    		<span class="slds-avatar slds-avatar--large">
-					<img src="{!$Resource.slds212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
+					<img src="{!$Resource.SLDS212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
 	    		</span>
 	    	</div>
 	    	<div class="slds-media__body">

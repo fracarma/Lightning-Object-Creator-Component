@@ -6,7 +6,7 @@
 	<aura:attribute name="message" type="Boolean" />
 
 
-	 <c:ChildCreatorComponent 	obj="{
+	 <c:ChildCreatorComponent obj="{
                             			sobjectType : 'Contact',
 		                            	LastName : 'Rossi',
 		                            	FirstName : 'Mario'
@@ -21,7 +21,7 @@
 	                            	{name : 'Email' ,        type : 'inputField'}
 	                        	]"
             					
-            					loadExistingRecords="true"
+            					loadExistingRecords="{!'AccountId:'+v.recordId}"
 
 								max="{!v.max}"
 								columns="{!v.columns}"

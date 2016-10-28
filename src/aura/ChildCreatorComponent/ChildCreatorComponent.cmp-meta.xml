@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AuraDefinitionBundle xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>38.0</apiVersion>
-    <description>event fired on changing field value. We need it because in lightning there is no data binding!</description>
+    <description>Component to be inserted in a record page to directly create children records</description>
 </AuraDefinitionBundle>
