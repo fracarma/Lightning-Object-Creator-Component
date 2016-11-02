@@ -4,8 +4,17 @@ public with sharing class ChildCreatorController {
 	public static SObject[] saveItems(SObject[] itemToBeSavedList, SObject[] itemToBeRemovedList){
 		system.debug('@@itemToBeSavedList '	+itemToBeSavedList);
 		system.debug('@@itemToBeRemovedList '	+itemToBeRemovedList);
-		
-		upsert itemToBeSavedList;
+		List<SObject> toInsertList = new List<SObject>();
+		List<SObject> toUpdateList = new List<SObject>();
+		for(SObject item: itemToBeSavedList){
+			if(item.Id == null){
+				toInsertList.add(item);
+			} else {
+				toUpdateList.add(item);
+			}
+		}
+		insert toInsertList;
+		update toUpdateList;
 		delete itemToBeRemovedList;
 		return itemToBeSavedList;
 	}
