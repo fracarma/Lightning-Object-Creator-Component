@@ -68,16 +68,23 @@
 
 	externalSaveItemList : function(component, event, helper){
 		var itemList = component.get("v.itemList");
+		var fieldMap = component.get("v.fieldMap");
+		var objName = component.get("v.objName");
 		var params = event.getParam('arguments');
 
 		//FraCarma: assign the value passed as arguments to all items
         if (params) {
         	for (var i = 0; i < itemList.length; i++) {
 	        	for (var property in params.fieldList) {
-				    if (itemList[i].hasOwnProperty(property)) {
-						itemList[i][property] = params.fieldList[property];				    
+				    if (fieldMap.hasOwnProperty(property)) {
+						//FraCarma: to add a new property and pass it to the Apex controller, I need
+						// to create a copy of the object and not modify it by reference...
+						var item = JSON.parse(JSON.stringify(itemList[i]));
+						item.obj[property] = params.fieldList[property];
+						itemList[i] = item;
+						console.log(itemList[i].obj);			    
 				    } else {
-				    	console.log('Warning: there is no field '+property+' on item');
+				    	console.log('Warning: there is no field '+property+' on object '+objName);
 				    }
 				}
         	}
