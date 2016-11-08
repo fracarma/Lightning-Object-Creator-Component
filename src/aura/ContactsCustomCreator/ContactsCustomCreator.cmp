@@ -17,7 +17,7 @@
                               	fieldList="[
                     				{name : 'FirstName' ,       type : 'inputField', required : true},
 	                            	{name : 'LastName' ,       type : 'inputField', required : true},
-	                            	{name : 'CleanStatus' ,    type : 'inputField'},
+	                            	{name : 'CleanStatus' ,    type : 'outputField'},
 	                            	{name : 'DoNotCall' ,    type : 'inputField'},
 	                            	{name : 'HasOptedOutOfEmail' ,    type : 'inputField'},
 	                            	{name : 'Phone' ,        type : 'inputField'},
