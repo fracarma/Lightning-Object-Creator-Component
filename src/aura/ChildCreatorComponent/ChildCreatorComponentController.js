@@ -16,22 +16,31 @@
 
 	saveItemList : function(component, event, helper){
 		var validate = helper.validateFields(component);
+		var validationErrorEvent = $A.get("e.c:validationError");
 		if(!validate){
 			helper.writeMessage(component,'error','Check fields', 'There are some errors on object fields. Check them and retry.');
-			var validationErrorEvent = $A.get("e.c:validationError");
-			validationErrorEvent.fire();
-            return;
-		}		
+			validationErrorEvent.setParams({"status" : false});
+		} else {
+			validationErrorEvent.setParams({"status" : true});
+		}
+		validationErrorEvent.fire();
+		
 		var isExternal = false;
-        helper.saveItemList(component, event, helper, isExternal);
+        
+        if(validate){
+        	helper.saveItemList(component, event, helper, isExternal);
+        }
 	},
 
 	validateFields : function(component, event, helper){
 		var validate = helper.validateFields(component);
-        if(!validate){
-            var validationErrorEvent = $A.get("e.c:validationError");
-			validationErrorEvent.fire();
-        }
+		var validationErrorEvent = $A.get("e.c:validationError");
+		if(!validate){
+			validationErrorEvent.setParams({"status" : false});
+		} else {
+			validationErrorEvent.setParams({"status" : true});
+		}
+		validationErrorEvent.fire();
 	},
 
 	handleChangeFieldValue : function(component, event, helper){

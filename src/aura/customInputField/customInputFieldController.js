@@ -79,6 +79,8 @@
 	},
 
 	handleValidationErrorEvent : function(component,event,helper){
-		helper.checkInput(component,helper,true);
+		if(!event.getParam("status")){
+			helper.checkInput(component,helper,true);
+		}
 	}
 })
