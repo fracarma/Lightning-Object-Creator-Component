@@ -232,6 +232,13 @@
 		console.log('saveList : '+JSON.stringify(objToBeSavedList));
 		console.log('removeList : '+JSON.stringify(objToBeRemovedList));
 
+		if(objToBeSavedList.length <= 0 && objToBeRemovedList.length <= 0){
+			var savedItemListEvent = $A.get("e.c:savedItemList");
+        	savedItemListEvent.setParams({"isExternalRequest" : isExternalRequest});
+        	savedItemListEvent.fire();
+			return;
+		}
+
 		var action = component.get("c.saveItems");
         action.setParams({
         	"itemToBeSavedList" : objToBeSavedList,
