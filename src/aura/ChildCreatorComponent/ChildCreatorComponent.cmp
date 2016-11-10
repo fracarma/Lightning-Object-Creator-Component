@@ -14,6 +14,7 @@
 	<aura:attribute name="columns" type="Integer" default='1'  access="global" />
 	<aura:attribute name="createRecordOnLoad" type="Boolean" default='{!true}'  access="global" />
 	<aura:attribute name="loadExistingRecords" type="String" default='{!false}'  access="global" />
+	<aura:attribute name="minified" type="Boolean" default='{!false}' access="global"/>
 	
 	<!-- PRIVATE ATTRIBUTES -->
 
@@ -59,7 +60,7 @@
 
 		<aura:iteration items="{!v.itemList}" var="item">
 			<div class="{!'slds-p-around--x-small slds-size--1-of-1 slds-medium-size--1-of-1 slds-large-size--1-of-'+v.columns}">
-				<c:ChildCreatorItem item="{!item}" fieldList="{!v.fieldList}" fieldMap="{!v.fieldMap}" objName="{!v.objName}"/>
+				<c:ChildCreatorItem item="{!item}" fieldList="{!v.fieldList}" fieldMap="{!v.fieldMap}" objName="{!v.objName}" minified="{!v.minified}"/>
 			</div>
 
 		</aura:iteration>

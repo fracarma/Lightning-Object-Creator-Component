@@ -7,25 +7,41 @@
 
 	<aura:attribute name="fieldMap" type="Object" />
 	<aura:attribute name="objName" type="String" />
+	<aura:attribute name="minified" type="Boolean" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 	<div class=" slds-box slds-box--small slds-theme--shade">
-		<div class="slds-media">
-	    	<div class="slds-media__figure">
-	    		<span class="slds-avatar slds-avatar--large">
-					<img src="{!$Resource.SLDS212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
-	    		</span>
-	    	</div>
-	    	<div class="slds-media__body">
-	    		<p class="slds-text-heading--label">{!v.objName}</p>
-	    		<h1 class="slds-text-heading--medium">{!v.objName + ' ' + (v.item.index + 1) + (v.item.obj.Id == null ? ' - New' : '')}</h1>
-	    	</div>
-	    	<ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
-	              class="slds-button"
-	              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
-		</div>
-
+		<!-- NOT MINIFIED -->
+		<aura:if isTrue="{!!minified}">
+			<div class="slds-media">
+		    	<div class="slds-media__figure">
+		    		<span class="slds-avatar slds-avatar--large">
+						<img src="{!$Resource.SLDS212 + (v.item.obj.Id != null ? '/assets/images/avatar1.jpg' : '/assets/images/avatar2.jpg')}" alt="" style="{!v.item.toBeRemoved ? 'opacity : 0.5' : ''}"/>
+		    		</span>
+		    	</div>
+		    	<div class="slds-media__body">
+		    		<p class="slds-text-heading--label">{!v.objName}</p>
+		    		<h1 class="slds-text-heading--medium">{!v.objName + ' ' + (v.item.index + 1) + (v.item.obj.Id == null ? ' - New' : '')}</h1>
+		    	</div>
+		    	<ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
+		              class="slds-button"
+		              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
 		
-		<form class="slds-form--horizontal" aura:id="placeholder"></form>
+			</div>
+			<form class="slds-form--horizontal" aura:id="placeholder"></form>
+		</aura:if>
+
+		<!-- MINIFIED -->
+		<aura:if isTrue="{!minified}">
+			<form class="slds-form--inline" aura:id="placeholder">
+				  <div class="slds-form-element">
+					  <ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
+							              class="slds-button"
+							              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
+	  			</div>
+			</form>
+		</aura:if>
+
+
 	</div>
 </aura:component>

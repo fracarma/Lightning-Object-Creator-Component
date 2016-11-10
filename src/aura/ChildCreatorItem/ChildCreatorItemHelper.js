@@ -9,10 +9,10 @@
                     var divComponent = component.find("placeholder");
                     var divBody = divComponent.get("v.body");
                     
-                    for(var i in createdNewComponentList){
-                        divBody.push(createdNewComponentList[i]);
+                    for (var i = createdNewComponentList.length - 1; i >= 0; i--) {
+                        divBody.unshift(createdNewComponentList[i]);
                     }
-                    
+
                     divComponent.set("v.body", divBody);
                 }
                
