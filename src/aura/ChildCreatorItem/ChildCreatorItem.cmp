@@ -12,7 +12,7 @@
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 	<div class=" slds-box slds-box--small slds-theme--shade">
 		<!-- NOT MINIFIED -->
-		<aura:if isTrue="{!!minified}">
+		<aura:if isTrue="{!!v.minified}">
 			<div class="slds-media">
 		    	<div class="slds-media__figure">
 		    		<span class="slds-avatar slds-avatar--large">
@@ -32,12 +32,12 @@
 		</aura:if>
 
 		<!-- MINIFIED -->
-		<aura:if isTrue="{!minified}">
+		<aura:if isTrue="{!v.minified}">
 			<form class="slds-form--inline" aura:id="placeholder">
-				  <div class="slds-form-element">
+				  <div class="slds-form-element slds-p-horizontal--medium">
 					  <ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
-							              class="slds-button"
-							              press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
+                                 class="{!'slds-button '+ (v.item.toBeRemoved ? '' : 'slds-button--destructive')}"
+                                 press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
 	  			</div>
 			</form>
 		</aura:if>

@@ -34,7 +34,8 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 |          *message*             	    |		Boolean     |Display a message dialog box. Intended for debug operations. Default is *false*|
 |          *max*      	         	    |		Integer     |Maximum number of records a user can create. If not specified, a maximyum number is not set|
 |          *columns*      	       	    |		Integer     |Number of record boxes to be displayed in the component in desktop version. On mobile, the value is set to 1. Default value is 1|
-|          *createRecordOnLoad*      	|		Boolean     |Create a record on component loading. Default is *true*|
+|          *createRecordOnLoad*         |       Boolean     |Create a record on component loading. Default is *true*|
+|          *minified*                 	|		Boolean     |Display the component in a minified version. Default is *false*|
 
 #### fieldList
 
@@ -183,3 +184,4 @@ Be sure to accomplish all the requisites described in this resource: https://dev
 1. Add the possibility to load existing records on loading (DONE)
 1. Support Lookup fields
 1. Support Formula fields
+1. Enforce Permissions!!
