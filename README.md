@@ -35,6 +35,7 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 |          *max*      	         	    |		Integer     |Maximum number of records a user can create. If not specified, a maximyum number is not set|
 |          *columns*      	       	    |		Integer     |Number of record boxes to be displayed in the component in desktop version. On mobile, the value is set to 1. Default value is 1|
 |          *createRecordOnLoad*         |       Boolean     |Create a record on component loading. Default is *true*|
+|          *loadExistingRecord*         |       String      |Load existing record based on a particular condition. The format is "fieldName1:value1;fieldName2:value2;...". The default value is "false" (don't load existing records)|
 |          *minified*                 	|		Boolean     |Display the component in a minified version. Default is *false*|
 
 #### fieldList
@@ -71,6 +72,7 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 								saveButton="{!v.saveButton}"
 								message="{!v.message}"
 								createRecordOnLoad="{!true}"
+                                loadExistingRecords = "AccountId:{!Account.Id};Active:true"
 />
 ```
 
@@ -79,6 +81,10 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 #### save(*Object* fieldList)
 
 Commit the records to the database. Support Insert, Update and Delete. It is possible to define new values for all the record fields (e.g. After inserting the parent, write the id to the child records).
+The event *savedItemList* (see [here](src/aura/returnItemList/savedItemList.evt)) is fired if the save operation is performed well. The returned parameters are:
+
+1. itemList - *Object[]*: the list of saved item returned by the server
+2. isExternalRequest - *Boolean* : true if the save request belongs to the save method. If false, the save request has been internal to the component by the internal *save* button. You can enable it by passing the saveButton = true parameter on the component.
 
 #### fireReturnItemListEvent()
 
