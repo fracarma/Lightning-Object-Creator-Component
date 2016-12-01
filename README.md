@@ -186,8 +186,7 @@ Be sure to accomplish all the requisites described in this resource: https://dev
 
 ## TODO
 
-1. Update this README
-1. Add the possibility to load existing records on loading (DONE)
+1. ~~Add the possibility to load existing records on loading~~ (DONE)
 1. Support Lookup fields
 1. Support Formula fields
-1. Enforce Permissions!!
+1. Enforce Permissions
