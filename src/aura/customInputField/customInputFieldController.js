@@ -48,10 +48,8 @@
 								(type === 'PICKLIST')	? 'ui:inputSelect'	  	:
 								'ui:outputText';
         }
-        console.log('disabledCondition: '+JSON.stringify(disabledCondition));
         if(disabledCondition){
         	disabled = helper.validateCondition(disabledCondition, item, helper);
-        	console.log('disabled: ' + disabled);
         }
 
         if(!isInput){
