@@ -20,7 +20,7 @@
 	                            	{name : 'CleanStatus' ,    type : 'outputField'},
 	                            	{name : 'DoNotCall' ,    type : 'inputField'},
 	                            	{name : 'HasOptedOutOfEmail' ,    type : 'inputField'},
-	                            	{name : 'Phone' ,        type : 'inputField'},
+	                            	{name : 'Phone' ,        type : 'inputField', disabled:['AND',{field: 'LastName', value: 'Rossi'},{field: 'FirstName', value: 'Mario'}]},
 	                            	{name : 'Email' ,        type : 'inputField'}
 	                        	]"
             					

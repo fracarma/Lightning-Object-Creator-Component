@@ -81,5 +81,37 @@
             "propertyChanged" : property
         }).fire();
         
+    },
+
+    //Fracarma: Recursive method to check if the JSON condition is true or false
+    validateCondition : function(condition, item, helper){
+        if(!Array.isArray(condition)){
+           return helper.assertEquals(condition,item);
+        }
+        var res = false;
+        var logicalOperator = condition[0];
+        for (var i = 1; i < condition.length; i++) {
+
+            var loopRes = helper.validateCondition(condition[i], item, helper);
+            if(logicalOperator === 'AND'){
+                res = (i != 1) ? loopRes && res : loopRes;
+            }
+
+            if(logicalOperator === 'OR'){
+              res = (i != 1) ? loopRes || res : loopRes;
+            }
+        }
+
+        return res;
+    },
+    //fieldAndValueObj = {field : 'fieldName' , value : 'expectedValue'}
+    assertEquals : function(fieldAndValueObj, item){
+        var field = fieldAndValueObj.field;
+        var expectedValue = fieldAndValueObj.value;
+        if(!(field in item.obj)){
+            throw "The field "+field+" is not in the item";
+        }
+        var realValue = item.obj[field];
+        return expectedValue === realValue;
     }
 })

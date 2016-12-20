@@ -4,6 +4,7 @@
 		var componentConfig = [];
 
 
+        var item = component.get("v.item");
         var type = component.get("v.type");
         var picklistValues = component.get("v.picklistValues");
         var value = component.get("v.value");
@@ -13,6 +14,7 @@
         var disabled = component.get("v.disabled");
         var required = component.get("v.required");
 		var property = component.get("v.property");
+		var disabledCondition = component.get("v.disabledCondition");
 
         
         var componentName = 'ui:inputText';
@@ -46,8 +48,11 @@
 								(type === 'PICKLIST')	? 'ui:inputSelect'	  	:
 								'ui:outputText';
         }
-
-
+        console.log('disabledCondition: '+JSON.stringify(disabledCondition));
+        if(disabledCondition){
+        	disabled = helper.validateCondition(disabledCondition, item, helper);
+        	console.log('disabled: ' + disabled);
+        }
 
         if(!isInput){
         	disabled = true;
