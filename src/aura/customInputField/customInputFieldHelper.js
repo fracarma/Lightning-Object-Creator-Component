@@ -87,6 +87,7 @@
 
     //Fracarma: Recursive method to check if the JSON condition is true or false
     validateCondition : function(condition, item, helper){
+        window.alert(JSON.stringify(condition));
         if(!Array.isArray(condition)){
            return helper.assertEquals(condition,item);
         }

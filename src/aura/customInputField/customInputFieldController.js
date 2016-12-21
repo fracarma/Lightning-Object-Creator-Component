@@ -49,7 +49,7 @@
 								'ui:outputText';
         }
         if(disabledCondition){
-        	disabled = helper.validateCondition(disabledCondition, item, helper);
+        	disabled = helper.validateCondition(disabledCondition.condition, item, helper);
         }
 
         if(!isInput){
@@ -93,11 +93,17 @@
 		}
 
 		var item = params.item;
+		var property = component.get("v.property");
 
 		var disabledCondition = component.get("v.disabledCondition");
-		if(disabledCondition){
-        	var disabled = helper.validateCondition(disabledCondition, item, helper);
-        	component.find("placeholderItem").get("v.body")[0].set("v.disabled", disabled);
+		if(!disabledCondition){
+			return;
+        }
+
+        var disabled = helper.validateCondition(disabledCondition.condition, item, helper);
+        component.find("placeholderItem").get("v.body")[0].set("v.disabled", disabled);
+    	if(disabled && disabledCondition.resetOnDisabled === true){
+        	component.find("placeholderItem").get("v.body")[0].set("v.value", item.savedObj[property]);
         }
 
 	}
