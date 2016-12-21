@@ -2,7 +2,6 @@
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 	
 	<aura:handler event="c:validationError" action="{!c.handleValidationErrorEvent}" />
-	<aura:handler name="refreshConditionsEvent" event="c:RefreshConditions" action="{!c.handleRefreshConditionsEvent}"/>
 
 	<aura:registerEvent name="changeFieldValue" type="c:changeFieldValue"/>
 
