@@ -61,5 +61,24 @@
             }
         }
         component.set("v.item", item);
-    }
+    },
+
+    handleChangeFieldValue : function(component, event, helper){
+
+        var newItem = event.getParam("item");
+        var propertyChanged = event.getParam("propertyChanged");
+        var item = component.get('v.item');
+
+        item.obj[propertyChanged] = newItem.obj[propertyChanged];
+        
+        component.set("v.item", item);
+
+        var arr = component.find("placeholder").get("v.body");
+        for (var i = arr.length - 1; i >= 0; i--) {
+            arr[i].checkDisabledCondition(item);
+        }
+
+
+
+    },
 })

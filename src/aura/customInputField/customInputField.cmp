@@ -2,6 +2,7 @@
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
 	
 	<aura:handler event="c:validationError" action="{!c.handleValidationErrorEvent}" />
+
 	<aura:registerEvent name="changeFieldValue" type="c:changeFieldValue"/>
 
 	<aura:attribute name="item" type="SObject" required="true"/>
@@ -14,10 +15,17 @@
 	<aura:attribute name="isInput" type="Boolean" />
 	<aura:attribute name="disabled" type="Boolean" />
 	
+	<!-- A condition on item.fieldproperties -->
+	<aura:attribute name="disabledCondition" type="Object" />
+	
 	<aura:attribute name="globalId" type="String" access="private"/>
 
 	<aura:attribute name="required" type="Boolean" />
 
+	<aura:method name="checkDisabledCondition" action="{!c.checkDisabledCondition}" 
+      description="Perform the disabled/rendered condition check"> 
+        <aura:attribute name="item" type="Object" /> 
+    </aura:method>
 
 	<div class="slds-form-element">
 		<label class="slds-form-element__label" for="{!v.label}">{!v.label}<aura:if isTrue="{!v.required}">*</aura:if></label>

@@ -4,6 +4,7 @@
 		var componentConfig = [];
 
 
+        var item = component.get("v.item");
         var type = component.get("v.type");
         var picklistValues = component.get("v.picklistValues");
         var value = component.get("v.value");
@@ -13,6 +14,7 @@
         var disabled = component.get("v.disabled");
         var required = component.get("v.required");
 		var property = component.get("v.property");
+		var disabledCondition = component.get("v.disabledCondition");
 
         
         var componentName = 'ui:inputText';
@@ -46,8 +48,9 @@
 								(type === 'PICKLIST')	? 'ui:inputSelect'	  	:
 								'ui:outputText';
         }
-
-
+        if(disabledCondition){
+        	disabled = helper.validateCondition(disabledCondition.condition, item, helper);
+        }
 
         if(!isInput){
         	disabled = true;
@@ -82,5 +85,26 @@
 		if(!event.getParam("status")){
 			helper.checkInput(component,helper,true);
 		}
+	},
+	checkDisabledCondition : function(component,event,helper){
+		var params = event.getParam('arguments');
+		if (!params) {
+			return;
+		}
+
+		var item = params.item;
+		var property = component.get("v.property");
+
+		var disabledCondition = component.get("v.disabledCondition");
+		if(!disabledCondition){
+			return;
+        }
+
+        var disabled = helper.validateCondition(disabledCondition.condition, item, helper);
+        component.find("placeholderItem").get("v.body")[0].set("v.disabled", disabled);
+    	if(disabled && disabledCondition.resetOnDisabled === true){
+        	component.find("placeholderItem").get("v.body")[0].set("v.value", item.savedObj[property]);
+        }
+
 	}
 })

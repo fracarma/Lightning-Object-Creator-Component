@@ -10,6 +10,8 @@
 	<aura:attribute name="minified" type="Boolean" />
 
 	<aura:handler name="init" action="{!c.doInit}" value="{!this}" />
+	<aura:handler name="changeFieldValue" event="c:changeFieldValue" action="{!c.handleChangeFieldValue}"/>
+
 	<div class= "{!'slds-box slds-box--small ' + (v.item.obj.Id != null ? 'slds-theme--standard' : 'slds-theme--shade')}">
 		<!-- NOT MINIFIED -->
 		<aura:if isTrue="{!!v.minified}">

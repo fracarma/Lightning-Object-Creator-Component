@@ -44,7 +44,8 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
 |---------------------------------------|-------------------|-----------------------------------------------------------------------------|
 |          *name* (*Required*)           |		String     |API name of the field|
 |          *type* (*Required*)		     |		String 	    |'inputField' or 'outputField'|
-|          *required*		           |		Boolean      |If *true*, the field is required and a *save* operation is not allowed|
+|          *required*                  |        Boolean      |If *true*, the field is required and a *save* operation is not allowed|
+|          *disabled*		           |		Object      |A condition to disable the field based on the values of the other fields. The condition on the field at the moment is based only on equality. Simple single field condition is represented by a single object in the format `{ condition : {field: 'nameOfTheField', value: 'ExpectedValue'}}`. For more complex conditions, the component uses a list of the previous object specificing the Logical Operator. The format is `disabled:{condition: ['AND'/'OR',{field: 'nameOfTheField', value: 'ExpectedValue'},{field: 'FirstName', value: 'Mario'},...,{field: 'FirstName', value: 'Francesco'}]}`. It is possible to nest conditions in a *s-expression*-like format: `['AND'/'OR',['AND/OR', {...},{...}],{...},...,{...}]`. Adding the property `resetOnDisabled : true`, when disabled on field changes after component initialization it will reset to the saved value.|
 
 **NB: At the moment, The only fields full supported are Text, Numbers, Email, Picklist and Checkbox**. Any other field type could be not working or completely brake the component.
 
@@ -63,7 +64,14 @@ The main component *ChildCreatorComponent* is intended to be used directly in Vi
                     				{name : 'FirstName' ,       type : 'inputField', required : true},
 	                            	{name : 'LastName' ,       type : 'inputField', required : true},
 	                            	{name : 'Phone' ,        type : 'inputField', required : true},
-	                            	{name : 'Email' ,        type : 'inputField'}
+	                            	{name : 'Email' ,        type : 'inputField', disabled:
+                                        { condition: ['AND',{field: 'LastName', value: 'Rossi'},
+                                            ['OR',
+                                                {field: 'FirstName', value: 'Mario'},
+                                                {field: 'FirstName', value: 'Francesco'}
+                                            ]
+                                        ], resetOnDisabled : true}
+                                    }
 	                        	]"
             				
 

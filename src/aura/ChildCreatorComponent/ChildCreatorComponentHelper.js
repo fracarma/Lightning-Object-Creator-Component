@@ -77,6 +77,7 @@
 		this.initializeWrapper(component, newItem);
 		newItem.index = index;
 		newItem.toBeRemoved = (obj.toBeRemoved) ? true : false;
+		newItem.savedObj = JSON.parse(JSON.stringify(newItem.obj));
 		return newItem
 	},
 
@@ -86,7 +87,6 @@
 		var obj = component.get('v.obj');
 		var newItem = {};
 		newItem.obj = JSON.parse(JSON.stringify(obj));
-		
 		//FraCarma: sometimes the helper method "addFields" seems not working when called from here.. DAMN!! 
 		var additionalFields = component.get('v.additionalFields');
 		if(additionalFields){
@@ -101,6 +101,7 @@
 			}
 		}
 	
+
 
 		
 
@@ -133,6 +134,8 @@
 
 		newItem.index = itemList.length;
 		newItem.toBeRemoved = (obj.toBeRemoved) ? true : false;
+		newItem.savedObj = JSON.parse(JSON.stringify(newItem.obj));
+		
 		itemList.push(newItem);
 		component.set('v.itemList', itemList);
 	},

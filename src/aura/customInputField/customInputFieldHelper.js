@@ -75,11 +75,49 @@
         item.obj[property] = component.find("placeholderItem").get("v.body")[0].get("v.value");
 
         var changeFieldValueEvent = component.getEvent("changeFieldValue");
-
+        
+        component.set("v.item", item);
+        
         changeFieldValueEvent.setParams({
             "item" : item,
             "propertyChanged" : property
         }).fire();
         
+    },
+
+    //Fracarma: Recursive method to check if the JSON condition is true or false
+    validateCondition : function(condition, item, helper){
+        window.alert(JSON.stringify(condition));
+        if(!Array.isArray(condition)){
+           return helper.assertEquals(condition,item);
+        }
+        var res = false;
+        var logicalOperator = condition[0];
+        for (var i = 1; i < condition.length; i++) {
+
+            var loopRes = helper.validateCondition(condition[i], item, helper);
+            if(logicalOperator === 'AND'){
+                res = (i != 1) ? loopRes && res : loopRes;
+            }
+
+            if(logicalOperator === 'OR'){
+              res = (i != 1) ? loopRes || res : loopRes;
+            }
+        }
+
+        return res;
+    },
+    //fieldAndValueObj = {field : 'fieldName' , value : 'expectedValue'}
+    assertEquals : function(fieldAndValueObj, item){
+        var field = fieldAndValueObj.field;
+        var expectedValue = fieldAndValueObj.value;
+        if(!(field in item.obj)){
+            throw "The field "+field+" is not in the item";
+        }
+        var realValue = item.obj[field];
+        console.log('field '+field);
+        console.log('expectedValue '+expectedValue);
+        console.log('realValue '+realValue);
+        return expectedValue === realValue;
     }
 })
