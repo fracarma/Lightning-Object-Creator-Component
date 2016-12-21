@@ -85,5 +85,29 @@
 		if(!event.getParam("status")){
 			helper.checkInput(component,helper,true);
 		}
+	},
+	checkDisabledCondition : function(component,event,helper){
+		var params = event.getParam('arguments');
+		if (!params) {
+			return;
+		}
+
+		var item = params.item;
+		
+		var disabledCondition = component.get("v.disabledCondition");
+		if(disabledCondition){
+        	var disabled = helper.validateCondition(disabledCondition, item, helper);
+        	component.find("placeholderItem").get("v.body")[0].set("v.disabled", disabled);
+        }
+
+	},
+	handleRefreshConditionsEvent : function(component,event,helper){
+		var item = event.getParam("item");
+		var disabledCondition = component.get("v.disabledCondition");
+		if(disabledCondition){
+        	var disabled = helper.validateCondition(disabledCondition, item, helper);
+        	window.alert('disabled: '+disabled);
+        	component.find("placeholderItem").get("v.body")[0].set("v.disabled", disabled);
+        }
 	}
 })

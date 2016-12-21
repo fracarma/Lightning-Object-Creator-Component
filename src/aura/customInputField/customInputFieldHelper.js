@@ -75,7 +75,9 @@
         item.obj[property] = component.find("placeholderItem").get("v.body")[0].get("v.value");
 
         var changeFieldValueEvent = component.getEvent("changeFieldValue");
-
+        
+        component.set("v.item", item);
+        
         changeFieldValueEvent.setParams({
             "item" : item,
             "propertyChanged" : property
@@ -112,6 +114,9 @@
             throw "The field "+field+" is not in the item";
         }
         var realValue = item.obj[field];
+        console.log('field '+field);
+        console.log('expectedValue '+expectedValue);
+        console.log('realValue '+realValue);
         return expectedValue === realValue;
     }
 })
