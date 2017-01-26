@@ -4,6 +4,7 @@
 	<aura:attribute name="columns" type="Integer" default='1'  />
 	<aura:attribute name="saveButton" type="Boolean" />
 	<aura:attribute name="message" type="Boolean" />
+	<aura:attribute name="minified" type="Boolean" />
 
 
 	 <c:ChildCreatorComponent obj="{
@@ -34,6 +35,7 @@
 								saveButton="{!v.saveButton}"
 								message="{!v.message}"
 								createRecordOnLoad="{!true}"
+								minified="{!v.minified}"
 
 
 
