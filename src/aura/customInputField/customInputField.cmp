@@ -10,6 +10,7 @@
 	<aura:attribute name="value" type="String" required="true"/>
 	<aura:attribute name="label" type="String" required="true"/>
 	<aura:attribute name="type" type="String" />
+	<aura:attribute name="length" type="String" />
 	<aura:attribute name="picklistValues" type="Object[]" />
 	<aura:attribute name="placeholder" type="String"/>
 	<aura:attribute name="isInput" type="Boolean" />

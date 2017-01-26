@@ -35,6 +35,7 @@ public with sharing class ChildCreatorController {
 			Map<String, String> fieldDescribeMap = new Map<String, String>();
 			fieldDescribeMap.put('label',field.getLabel());
 			fieldDescribeMap.put('type', field.getType() +'');
+			fieldDescribeMap.put('length', field.getLength() +'');
 
 			if(field.getType() == DisplayType.Picklist){
 				List<Schema.PicklistEntry> picklistEntryList = field.getPicklistValues();

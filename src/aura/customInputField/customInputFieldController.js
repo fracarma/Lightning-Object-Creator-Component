@@ -6,6 +6,7 @@
 
         var item = component.get("v.item");
         var type = component.get("v.type");
+        var length = component.get("v.length");
         var picklistValues = component.get("v.picklistValues");
         var value = component.get("v.value");
         var label = component.get("v.label");
@@ -62,6 +63,7 @@
               "placeholder": placeholder,
               "disabled": disabled,
               "required": required,
+              "maxlength": length,
               "change" : component.getReference("c.myAction"),
               "class"	: className
             };
