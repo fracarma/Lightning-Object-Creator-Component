@@ -33,6 +33,7 @@
         var fieldMap = component.get("v.fieldMap");
         var label = (fieldMap) ? fieldMap[property].label : 'Fieldmap entry not found';
         var type = (fieldMap) ? fieldMap[property].type  : 'Fieldmap entry not found';
+        var length = (fieldMap) ? fieldMap[property].length  : 'Fieldmap entry not found';
         var disabledCondition = (fieldDescribe) ? fieldDescribe.disabled : null;
         var picklistValues = (fieldMap && type == 'PICKLIST') ? fieldMap[property].picklistValues  : 'picklistValues not found';
         var value = (item.obj[property]) ? item.obj[property] : '';
@@ -48,6 +49,7 @@
               "isInput" : true,
               "required" : fieldDescribe.required,
               "type": type,
+              "length": length,
               "picklistValues": picklistValues,
               "disabledCondition" : disabledCondition
             }];

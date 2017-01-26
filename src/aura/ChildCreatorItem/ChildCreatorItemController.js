@@ -75,7 +75,11 @@
 
         var arr = component.find("placeholder").get("v.body");
         for (var i = arr.length - 1; i >= 0; i--) {
-            arr[i].checkDisabledCondition(item);
+            try{
+                arr[i].checkDisabledCondition(item);
+            } catch(err){
+                console.warn("Error during checkDisabledCondition: ",err);
+            }
         }
 
 
