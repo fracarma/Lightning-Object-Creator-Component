@@ -28,7 +28,7 @@
         <aura:attribute name="item" type="Object" /> 
     </aura:method>
 
-	<div class="slds-form-element">
+	<div class="slds-form-element slds-p-bottom--small">
 		<label class="slds-form-element__label" for="{!v.label}">{!v.label}<aura:if isTrue="{!v.required}">*</aura:if></label>
 
 		<!-- FraCarma: the ui:inputCheckbox needs some tricks in order to use the SDLS  -->

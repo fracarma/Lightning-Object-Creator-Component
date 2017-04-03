@@ -37,7 +37,7 @@
 		<aura:if isTrue="{!v.minified}">
 			<form class="slds-form--inline">
 				<span  aura:id="placeholder"></span>
-				  <div class="slds-form-element slds-p-horizontal--medium">
+				  <div class="slds-form-element slds-p-horizontal--medium slds-p-bottom--small">
 					  <ui:button label="{!(v.item.toBeRemoved ? 'Restore' : 'Remove') + ' ' + v.objName}"
                                  class="{!'slds-button '+ (v.item.toBeRemoved ? '' : 'slds-button--destructive')}"
                                  press="{!(v.item.toBeRemoved ? c.restoreItemAction : c.removeItemAction)}" />
