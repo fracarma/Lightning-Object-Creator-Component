@@ -22,9 +22,9 @@ private class ChildCreatorControllerTest {
 
 	@isTest
 	private static void formatSObjectListTest() {
-		Product2[] accountList = createListofProduct(100);
-		ChildCreatorController.formatSObjectList(accountList);
-		
+		Product2[] productList = createListofProduct(100);
+		Product2[] resProductList = ChildCreatorController.formatSObjectList(productList);
+		System.assertEquals(productList, resProductList);
 	}
 
 	@isTest
@@ -38,6 +38,7 @@ private class ChildCreatorControllerTest {
 	private static void getExistingRecordsTest_errors() {
 		try {
 			ChildCreatorController.getExistingRecords(null, null, null);
+			System.assert(false, 'There should be an exception!');
 		} catch (Exception e) {
 			system.debug('@@Exception on '+e.getStackTraceString()+' : '+e.getMessage());
 		}
@@ -48,6 +49,7 @@ private class ChildCreatorControllerTest {
 
 		try {
 			ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+			System.assert(false, 'There should be an exception!');
 		} catch (Exception e2) {
 			system.debug('@@Exception on '+e2.getStackTraceString()+' : '+e2.getMessage());
 		}
@@ -58,7 +60,8 @@ private class ChildCreatorControllerTest {
 		String fieldListJSON = '[{"name":"FirstName","type":"inputField","required":true},{"name":"LastName","type":"inputField","required":true},{"name":"Phone","type":"inputField","required":true},{"name":"Email","type":"inputField"}]';
 		Contact item = new Contact(LastName = 'Rossi');
 		String[] parameterList = null;
-		ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+		Contact[] resContact = ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+		System.assertEquals(0, resContact.size(), 'There should be no existing records!');
 	}
 
 	@isTest
@@ -66,7 +69,23 @@ private class ChildCreatorControllerTest {
 		String fieldListJSON = '[{"name":"FirstName","type":"inputField","required":true},{"name":"LastName","type":"inputField","required":true},{"name":"Phone","type":"inputField","required":true},{"name":"NOT EXISTING","type":"inputField"}]';
 		Contact item = new Contact(LastName = 'Rossi');
 		String[] parameterList = new List<String>{'LastName:Rossi','firstname:Mario','asdfasdf:Mario','asdf:23452:23452'};
-		ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+		Contact[] resContact = ChildCreatorController.getExistingRecords(item, fieldListJSON, parameterList);
+		System.assertEquals(0, resContact.size(), 'There should be no existing records!');
+	}
+
+	@isTest
+	private static void DMLexceptionTest() {
+		List<Product2> productList = new List<Product2>();
+		Product2 productWithNoName = new Product2();
+		productList.add(productWithNoName);
+		try {
+			ChildCreatorController.saveItems(productList, null);
+			System.assert(false, 'There should be an exception! I am trying to insert a Product2 without a Name!');
+				
+		} catch (Exception e) {
+			system.debug('@@Exception on '+e.getStackTraceString()+' : '+e.getMessage());
+		}
+
 	}
 
 	public static List<Product2> createListofProduct(Integer n){

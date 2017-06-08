@@ -13,9 +13,21 @@ public with sharing class ChildCreatorController {
 				toUpdateList.add(item);
 			}
 		}
-		insert toInsertList;
-		update toUpdateList;
-		delete itemToBeRemovedList;
+		SavePoint savePointBeforeDML = Database.setSavePoint();
+        try {
+			insert toInsertList;
+			update toUpdateList;
+			delete itemToBeRemovedList;
+        } catch (DmlException e) {
+            Database.rollback(savePointBeforeDML);
+            String dmlErrorMessage = e.getDmlMessage(0);
+            system.debug('@@Exception on '+e.getStackTraceString()+' : '+e.getMessage());
+            throw new AuraHandledException('Error while saving the records: '+dmlErrorMessage);
+        } catch (Exception e){
+            Database.rollback(savePointBeforeDML);
+            system.debug('@@Exception on '+e.getStackTraceString()+' : '+e.getMessage());
+            throw new AuraHandledException('Error while saving the records: '+e.getMessage());
+        }
 		return itemToBeSavedList;
 	}
 
@@ -107,7 +119,7 @@ public with sharing class ChildCreatorController {
 		return existingRecordList;
 	}
 
-	public class fieldWrapper {
+	public with sharing class fieldWrapper {
 		public String name;
 		public String type;
 		public Boolean required;
