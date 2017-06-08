@@ -2,6 +2,7 @@
 
 !.gitignore
 !.gitignore.
+!.travis.yml
 
 /src/*
 
