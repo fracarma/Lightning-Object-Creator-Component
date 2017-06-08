@@ -1,5 +1,7 @@
 # Lightning Object Creator Component
 
+[![Build Status](https://travis-ci.org/fracarma/Lightning-Object-Creator-Component.svg?branch=master)](https://travis-ci.org/fracarma/Lightning-Object-Creator-Component)
+
 <a href="https://githubsfdeploy.herokuapp.com">
   <img alt="Deploy to Salesforce" src="https://raw.githubusercontent.com/afawcett/githubsfdeploy/master/deploy.png">
 </a>
