@@ -21,6 +21,8 @@
 	                            	{name : 'CleanStatus' ,    type : 'outputField'},
 	                            	{name : 'DoNotCall' ,    type : 'inputField'},
 	                            	{name : 'HasOptedOutOfEmail' ,    type : 'inputField'},
+	                            	{name : 'Test_Currency__c' ,    type : 'inputField'},
+	                            	{name : 'Test_Number__c' ,    type : 'inputField'},
 	                            	{name : 'Phone' ,        type : 'inputField', 
 	                            		disabled: {condition: ['AND',{field: 'LastName', value: 'Rossi'},{field: 'FirstName', value: 'Mario'}], 
 	                            		resetOnDisabled : true}
