@@ -29,6 +29,9 @@
 								(type === 'PHONE')	 	? 'ui:inputPhone'	  	:
 								(type === 'STRING')	 	? 'ui:inputText'	  	:
 								(type === 'PICKLIST')	? 'ui:inputSelect'	  	:
+								(type === 'INTEGER')	? 'ui:inputNumber'	  	:
+								(type === 'DOUBLE')		? 'ui:inputNumber'	  	:
+								(type === 'CURRENCY')	? 'ui:inputCurrency'	:
 								'ui:inputText';
 			
 			className = 		(type === 'BOOLEAN') 	? ''	:
@@ -47,6 +50,9 @@
 								(type === 'PHONE')	 	? 'ui:outputPhone'	  	:
 								(type === 'STRING')	 	? 'ui:outputText'	  	:
 								(type === 'PICKLIST')	? 'ui:inputSelect'	  	:
+								(type === 'INTEGER')	? 'ui:outputNumber'	  	:
+								(type === 'DOUBLE')		? 'ui:outputNumber'	  	:
+								(type === 'CURRENCY')	? 'ui:outputCurrency'	:
 								'ui:outputText';
         }
         if(disabledCondition){
