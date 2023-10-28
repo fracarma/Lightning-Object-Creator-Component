@@ -1,3 +1,5 @@
+# ARCHIVED: You probably noticed already, but this repo is using old technology and shouldn't be used anymore
+
 # Lightning Object Creator Component
 
 [![Build Status](https://travis-ci.org/fracarma/Lightning-Object-Creator-Component.svg?branch=master)](https://travis-ci.org/fracarma/Lightning-Object-Creator-Component)
